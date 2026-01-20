@@ -45,6 +45,7 @@ services:
       - N8N_HOST=${SUBDOMAIN}.${DOMAIN_NAME}
       - N8N_PROTOCOL=https
       - N8N_PORT=5678
+      - N8N_TRUST_PROXY=true
       - WEBHOOK_URL=https://${SUBDOMAIN}.${DOMAIN_NAME}/
 
       # 🔑 QUEUE MODE
@@ -58,6 +59,7 @@ services:
     volumes:
       - n8n_data:/home/node/.n8n
       - ./local-files:/files
+      - ./n8n-nodes-http-context:/home/node/.n8n/custom/n8n-nodes-http-context
 
   n8n-worker:
     image: docker.n8n.io/n8nio/n8n
@@ -79,6 +81,7 @@ services:
     volumes:
       - n8n_data:/home/node/.n8n
       - ./local-files:/files
+      - ./n8n-nodes-http-context:/home/node/.n8n/custom/n8n-nodes-http-context
 
 volumes:
   n8n_data:
